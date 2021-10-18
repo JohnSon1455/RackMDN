@@ -1,0 +1,23 @@
+<div class="justify-center order-none">
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to " 透過 #{OmniAuth::Utils.camelize(provider)} 登入", omniauth_authorize_path(resource_name, provider), class:"fab fa-github text-xs sign-github p-2", method: :post %>
+    <% end %>
+  <% end %>    
+</div><br />
+
+<%- if controller_name != 'sessions' %>
+  已經有帳號了？<%= link_to "登入", new_session_path(resource_name), class:"sign-a-hover" %><br />
+<% end %>
+ 
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  第一次使用 RackMD？<%= link_to "註冊", new_registration_path(resource_name), class:"sign-a-hover" %><br />
+<% end %>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end %>

@@ -1,0 +1,40 @@
+hr {
+  line-height:20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+// hr:before {
+//   content: "無標籤";
+//   position: absolute;
+//   align-self: center;
+//   z-index: 2;
+//   font-size: 1.5rem;
+//   background-color: #333333;
+//   padding: 5px;
+// } 
+.pagination {
+  font-size: 1rem;
+  .first, .prev, .next, .last {
+    display: none;
+  }
+  :hover,
+  .current {
+    color: #333333;
+    background-color: white;
+    text-align: center;
+  }
+  span {
+    display: inline-block;
+    width: 1.5rem;
+    border: white 1px solid;
+    a {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

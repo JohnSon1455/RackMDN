@@ -1,0 +1,16 @@
+.user-btn {
+  @apply border border-white text-white rounded-sm bg-gray-rackmd hover:text-black;
+}
+.user-text-field {
+  @apply bg-gray-rackmd text-white border border-white p-1 rounded w-96 text-xs;
+}
+.image-upload > input {
+  display: none;
+}
+.image-upload > label {
+  @apply border border-white text-white rounded-sm bg-gray-rackmd hover:text-black p-10;
+  cursor: pointer;
+}
+.user-delete {
+  @apply  border border-red-500 text-red-500 rounded py-2 px-16 bg-gray-rackmd hover:text-white
+}

@@ -1,0 +1,17 @@
+<template id='filterNote'>
+  <div class="notes-gather">
+    <h2 class="-m-1 w-full">
+      <a href="/notes/" class="text-gray-rackmd no-underline noteTitle" >title</a>
+    </h2>
+    <span class="update-timer">
+    </span>
+    <div class="notes-icon-list">
+      <a data-controller="collect"
+         data-action="collect#addCollection">
+      </a>
+      <a data-confirm="確定刪除筆記？" rel="nofollow" data-method="delete" href="/notes/${note_id}" >
+        <i class="fas fa-trash-alt"></i>
+      </a>
+    </div>
+  </div>
+</template>

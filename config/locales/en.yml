@@ -1,0 +1,72 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+# I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 變更於 1 小時之前
+        other: 變更於 %{count} 小時之前
+      about_x_months:
+        one: 變更於 1 個月之前
+        other: 變更於 %{count} 月之前
+      about_x_years:
+        one: 變更於 1 年之前
+        other: 變更於 %{count} 年之前
+      almost_x_years:
+        one: 變更於 11 個月之前
+        other: 變更於 %{count} 年之前
+      half_a_minute: 變更於 %{count} 秒之前
+      less_than_x_seconds:
+        one: 變更於 1 秒之前
+        other: 變更於 %{count} 秒之前
+      less_than_x_minutes:
+        one: 變更於 幾秒之前
+        other: 變更於 %{count} 分鐘之前
+      over_x_years:
+        one: 變更於 1 年之前
+        other: 變更於 %{count} 年之前
+      x_seconds:
+        one: 變更於 1 秒之前
+        other: 變更於 %{count} 秒之前
+      x_minutes:
+        one: 變更於 1 分鐘之前
+        other: 變更於 %{count} 分鐘之前
+      x_days:
+        one: 變更於 1 天之前
+        other: 變更於 %{count} 天之前
+      x_months:
+        one: 變更於 1 月之前
+        other: 變更於 %{count} 月之前
+      x_years:
+        one: 變更於 1 年之前
+        other: 變更於 %{count} 年之前

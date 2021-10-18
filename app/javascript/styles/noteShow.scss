@@ -1,0 +1,63 @@
+.show-main {
+  @apply w-screen h-screen
+}
+
+.editor-nav {
+  @apply h-12 text-xl font-semibold bg-gray-lightest_xs p-2 flex-none flex
+}
+.logol {
+  @apply inline-block flex items-center text-gray-lightest_s hover:text-gray-lightest text-lg;
+  i {
+    @apply text-lg
+  }
+}
+
+.switch-btns {
+  @apply border border-solid border-gray-400 rounded h-8 overflow-hidden flex mx-5;
+
+  i {
+    @apply text-gray-deepest bg-white hover:bg-gray-300 hover:shadow-inner self-center align-middle py-1 h-full flex justify-center items-center cursor-pointer px-0.5
+  }
+  i:nth-of-type(2) {
+    @apply border-r border-l border-gray-400
+  }
+}
+
+.editor {
+  @apply flex w-screen
+}
+.editor-write {
+  @apply bg-editor text-white w-1/2;
+  
+  .toolbar{
+    @apply bg-gray-deepest h-10 flex items-center border-b border-solid border-gray-600 overflow-hidden
+  }
+  .btn-group {
+    @apply flex items-center px-2.5 justify-evenly w-full
+  }
+  a {
+    @apply px-1 rounded border border-opacity-0 hover:border-gray-300
+  }
+  a > i {
+    @apply self-center align-middle flex justify-center items-center cursor-pointer px-1 text-base text-gray-300
+  }
+}
+.editor-show {
+  @apply w-1/2
+}
+
+.editor-show-bar {
+  @apply flex flex-none items-center px-3 justify-between h-20 text-gray-lightest_s;
+  span {
+    @apply text-xs
+  }
+  .icon-btns {
+    @apply flex items-center
+  }
+  .favorite {
+    @apply flex;
+    i {
+    @apply outline-black
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div class="justify-center order-none">
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to " #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class:"fab fa-github text-xl sign-github p-2 w-36", method: :post %>
+    <% end %>
+  <% end %>    
+</div><br />

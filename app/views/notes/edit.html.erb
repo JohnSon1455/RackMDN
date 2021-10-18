@@ -1,0 +1,184 @@
+<main class="show-main">
+  <nav class="editor-nav justify-between">
+    <div class="flex">
+      <div class="logol">
+        <%= link_to notes_path do %>
+          <i class="fas fa-book-open text-xl"></i>RackMD
+        <% end %>
+      </div>
+      <div class="switch-btns">
+        <i class="fas fa-pencil-alt"></i>
+        <i class="fas fa-columns"></i>
+        <i class="far fa-eye"></i>
+      </div>
+    </div>
+    
+    <div data-controller="commentToggle"
+         class="flex items-center relative">
+        <i data-action="click->commentToggle#toggle"
+           class="fas fa-share-alt text-lg text-gray-lightest_s hover:text-gray-rackmd cursor-pointer">
+        </i>
+        <div data-commentToggle-target="display"
+             style="display: none;"
+             class="bg-white w-56 p-4 shadow absolute top-full right-20 z-10">
+          <div class="text-xs text-gray-light">
+            公開發表
+          </div>
+          <button class="rounded py-2">
+            <%= publicbtn_display(@note) %>
+          </button>
+          <div class="text-xs text-gray-light">
+            當選擇公開發表，網路上的所有人皆可以尋找及瀏覽到這篇筆記。 <br>
+            在<%= link_to "公開頁面", user_public_note_path(current_user.id), class:"text-blue-400 border-b border-blue-400"%>檢視所有已公開發表的筆記。
+          </div>
+        </div>
+        <button class="flex items-center text-white bg-blue-500 hover:bg-blue-600 py-1 rounded">
+          <i class="fas fa-users text-xs w-16"> 1 連線</i>
+        </button>
+    </div>
+  </nav>
+  <div class="editor">
+    <div class="editor-write">
+      <div class="toolbar">
+        <div class="btn-toolbar" role="toolbar" aria-label="Editor toolbar">
+          <div class="btn-group" role="group">
+            <a id="makeBold" class="btn btn-ed title="Bold">
+              <i class="fa fa-bold fa-fw"></i>
+            </a>
+            <a id="makeItalic" class="btn btn-ed title="Italic">
+              <i class="fa fa-italic fa-fw"></i>
+            </a>
+            <a id="makeStrike" class="btn btn-ed title="Strikethrough">
+              <i class="fa fa-strikethrough fa-fw"></i>
+            </a>
+            <a id="makeHeader" class="btn btn-ed title="Heading">
+              <i class="fa fa-h1 fa-fw">H</i>
+            </a>
+            <a id="makeCode" class="btn btn-ed title="Code">
+              <i class="fa fa-code fa-fw"></i>
+            </a>
+            <a id="makeQuote" class="btn btn-ed title="Quote">
+              <i class="fa fa-quote-right fa-fw"></i>
+            </a>
+            <a id="makeGenericList" class="btn btn-ed title="List">
+              <i class="fa fa-list fa-fw"></i>
+            </a>
+            <a id="makeOrderedList" class="btn btn-ed title="Numbered List">
+              <i class="fa fa-list-ol fa-fw"></i>
+            </a>
+            <a id="makeCheckList" class="btn btn-ed title="Check List">
+              <i class="fa fa-check-square fa-fw"></i>
+            </a>
+            <a id="makeLink" class="btn btn-ed title="Link">
+              <i class="fa fa-link fa-fw"></i>
+            </a>
+            <a id="makeImage" class="btn btn-ed title="Image">
+              <i class="fa fa-image fa-fw"></i>
+            </a>
+            <a id="makeTable" class="btn btn-ed title="Table">
+              <i class="fa fa-table fa-fw"></i>
+            </a>
+            <a id="makeLine" class="btn btn-ed title="Line">
+              <i class="fa fa-minus fa-fw"></i>
+            </a>
+            <a id="makeComment" class="btn btn-ed title="Comment">
+              <i class="fa fa-comment fa-fw"></i>
+            </a>
+          </div>
+          <span class="btn-group table-tools hidden-xs" style="display: none;">
+            <span class="separator" style="margin-left: -10px;">|</span>
+            <span>Row</span>
+            <a id="insertRow" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Insert Row">
+              <i class="fa fa-plus-circle fa-fw"></i>
+            </a>
+            <a id="deleteRow" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Delete Row">
+              <i class="fa fa-minus-circle fa-fw"></i>
+            </a>
+            <a id="moveRowUp" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Move Row Up">
+              <i class="fa fa-long-arrow-up fa-fw"></i>
+            </a>
+            <a id="moveRowDown" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Move Row Down">
+              <i class="fa fa-long-arrow-down fa-fw"></i>
+            </a>
+            <span>Column</span>
+            <a id="insertColumn" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Insert Column">
+              <i class="fa fa-plus-circle fa-fw"></i>
+            </a>
+            <a id="deleteColumn" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Delete Column">
+              <i class="fa fa-minus-circle fa-fw"></i>
+            </a>
+            <a id="moveColumnLeft" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Move Column Left">
+              <i class="fa fa-long-arrow-left fa-fw"></i>
+            </a>
+            <a id="moveColumnRight" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Move Column Right">
+              <i class="fa fa-long-arrow-right fa-fw"></i>
+            </a>
+            <span>Alignment</span>
+            <a id="alignLeft" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Align Left">
+              <i class="fa fa-align-left fa-fw"></i>
+            </a>
+            <a id="alignCenter" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Align Center">
+              <i class="fa fa-align-center fa-fw"></i>
+            </a>
+            <a id="alignRight" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Align Right">
+              <i class="fa fa-align-right fa-fw"></i>
+            </a>
+            <a id="alignNone" class="btn btn-sm btn-dark text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Align None">
+              <i class="fa fa-ban fa-fw"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="codemirror">
+        <h1><------這邊要放codemirror!!!------></h1>
+      </div>
+    </div>
+    <div class="editor-show">
+      <div class="editor-show-bar">
+        <div>
+          <span>變更於小時之前</span>
+        </div>
+        <div class="icon-btns">
+          <div data-controller="favorite"
+              data-favorite-id-value="<%= @note.id %>">
+            <a href="#"
+              id = "favorite_btn"
+              data-action="favorite#addFavorite"
+              data-id="<%= @note.id %>">
+              <%= favorite_icon(current_user, @note) %>
+            </a>
+            <span data-favorite-target='counter' >
+              <%= @likes %>
+            </span>
+          </div>
+          <div data-controller="collect"
+              data-collect-id-value="<%= @note.id %>">
+            <a data-action="collect#addCollection">
+              <%= collection_icon(current_user, @note) %>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="editor-show-content">
+        <h1><------這邊要放HTML!!!!!------></h1>
+      </div>
+    </div>
+    <div data-controller="commentToggle"
+              class="flex">
+      <button class="w-8 h-8 border border-gray-300 mr-8 rounded mt-6 flex justify-center items-center"
+              data-action="commentToggle#toggle">
+        <i class="fas fa-comment-dots text-sm text-gray-lightest_s"></i>
+      </button>
+      <div data-commentToggle-target="display"
+           style="display: none;"
+           class="mr-4 my-6 border border-gray-300 rounded w-60 overflow-y-scroll">
+        <div id="comments" class="mt-2">
+          <%= render "comments", comments: @comments %>
+        </div>
+        <div class="">
+          <%= render "createComment", note: @note, comment: @comment %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

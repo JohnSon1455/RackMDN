@@ -1,0 +1,69 @@
+<section class="w-screen flex bg-gray-rackmd">
+  <%= render "notes/side_bar" %>
+  <div class="mx-5">
+    <p class="text-white p-4">設定</p>
+    <ul class="text-white flex-initial bg-black w-28 text-xs">
+      <a href="#"><li class="bg-gray-400 p-1">一般設定</li></a>
+      <a href="#"><li class="hover:bg-gray-400 p-1">筆記設定 </li></a>
+      <a href="#"><li class="hover:bg-gray-400 p-1">通知</li></a>
+      <a href="#"><li class="hover:bg-gray-400 p-1">其他服務授權</li></a>
+    </ul>
+  </div>
+  <div class="w-auto my-10 mx-6">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div>
+      <p class="border-b-2 text-white p-2">一般設定</p>
+    </div>
+    <div class="flex">
+      <div class="w-auto">
+        <p class="text-white pt-6">使用者名稱</p>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "user-text-field" , placeholder:"您的使用者名稱"%>
+         <p class="text-gray-400 text-xs text-right">僅允許輸入中文、a-Z、0-9 以及 - 號 (非首位字元)</p>
+        <p class="text-white pt-4">Email</p>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-text-field", placeholder:"您的 Email"%>
+      </div>
+      <div class="pl-36 p-1 grid justify-items-end">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar.url, size: '150x150', class: 'rounded-full' %>
+        <% else %> 
+          <%= image_tag("104.png",:size => "150x150") %>
+        <% end %> 
+        <%= f.label :avatar, '選擇大頭照', class: "user-btn p-1 m-1 hover:bg-white" %>
+        <%= f.file_field :avatar, class: 'hidden' %>
+        <%= f.label :avatar, '重設大頭照', class: "user-btn p-1 m-1 hover:bg-white" %>        
+      </div>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+    <div class="field pt-2">
+      <p class="text-white">重設密碼</p>
+      <%= f.password_field :password, autocomplete: "new-password", class: "user-text-field"%>
+      <% if @minimum_password_length %>
+        <br />
+        <p class="text-white">輸入<%= @minimum_password_length %>位數</p>
+      <% end %>
+    </div>
+    <div class="field pt-2">
+      <p class="text-white">再次輸入密碼</p>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-text-field"%>
+    </div>
+    <div class="field pt-2">
+      <p class="text-white">輸入使用者密碼</p>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "user-text-field"%>
+    </div>
+    <div class="actions pt-2">
+      <%= f.submit "變更密碼", class: "user-btn p-1 hover:bg-white"%>
+    </div>
+    <div class="field  pt-2">
+      <p class="text-white">自我介紹</p>
+      <%= f.text_area :intro, class: "user-text-field h-20", placeholder:"說說您自己..."%><br />
+      <button>
+      <%= f.submit "確認更新", class: "user-btn p-1 hover:bg-white" %>
+      </button>
+    </div>
+  <% end %> <br />
+  <%= link_to "刪除帳號", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "user-delete hover:bg-red-500" %>
+  </div>
+</section>

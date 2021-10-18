@@ -1,0 +1,33 @@
+{
+  "name": "rack-md",
+  "private": true,
+  "dependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.4.2",
+    "@uiw/react-markdown-editor": "^3.2.3",
+    "autoprefixer": "^10.3.4",
+    "axios": "^0.21.4",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "codemirror": "^5.62.3",
+    "editor.md": "^1.5.0",
+    "postcss": "^8.3.6",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "stimulus": "^2.0.0",
+    "tailwindcss": "^2.2.9",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^1.6.1",
+    "prettier": "^2.4.1",
+    "webpack-dev-server": "^4.2.1"
+  }
+}

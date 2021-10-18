@@ -1,0 +1,51 @@
+<div class="sign-full">
+  <nav class="sign-header">
+    <%= link_to notes_path do %>
+      <i class="fas fa-book-open sign-header-text"> RackMD</i>
+    <% end %>
+  </nav>
+  <section class="sign-screen">
+    <div class="w-96">
+      <h2 class="sign-title">登入</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field my-2">
+          <%= f.label :email, class:"sign-sectitle" %>
+          <div class="text-center">
+            <%= f.email_field :email, autofocus: true,
+                                      autocomplete: "email",
+                                      class: "sign-input",
+                                      placeholder: "您的 Email" %>
+          </div>
+        </div>
+        <div class="field my-2">
+          <%= f.label :密碼, class:"sign-sectitle" %>
+          <div class="text-center">
+            <%= f.password_field :password, autocomplete: "current-password",
+                                            class: "sign-input",
+                                            placeholder: "您的密碼"%>
+          </div>
+          <% if devise_mapping.rememberable? %>
+            <div class="field text-gray-300 text-sm ml-8 mt-1">
+              <%= f.check_box :remember_me %>
+              <%= f.label :"記住密碼" %>
+            </div>
+          <% end %>
+        </div>
+  
+        <div class="actions text-center my-4">
+          <%= f.submit "登入", class:"sign-btn" %>
+        </div>
+        <div class="sign-text my-4">
+          或是
+        </div>
+        <div class="sign-text my-4">
+          繼續登入，代表您同意<a href="#" class="sign-a-hover">服務條款</a>。
+        </div>
+      <% end %>
+      <div class="sign-text">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </section>
+</div>

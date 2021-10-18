@@ -1,0 +1,103 @@
+<div class="sidebar h-screen" data-controller = "sideBar"
+                     data-sideBar-target = "sidebar">
+
+  <ul class="nav-list">
+    <li class="my_space">
+      <%= link_to notes_path do %>
+        <i class="fas fa-user pr-2"></i>
+        <span class="links_name text-xl">我的空間</span>
+      <% end %>
+    </li>
+    <li>
+      <div class="flex items-center">
+        <i class="fas fa-search"></i>
+        <div>
+          <%= form_tag(notes_path, :method => "get") do %>
+            <%= text_field_tag :search, nil, placeholder: "搜尋關鍵字或標籤", class: "w-40" %>
+            <%= submit_tag "搜尋筆記" ,:note_name => nil, class: "hidden" %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <li class="create"
+        style="width: 200px;">
+      <%=link_to notes_path, method: 'post' do %>
+        <i class="fas fa-plus"></i>
+        <span class="links_name">建立筆記</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to notes_path do %>
+        <i class="fas fa-lock"></i>
+        <span class="links_name">我的筆記</span>
+      <% end %>
+    </li>
+  </ul>
+  <ul class="nave-list list2 w-full">
+    <li>
+      <%= link_to users_collections_path do %>
+        <i class="fas fa-bookmark"></i>
+        <span class="links_name">收藏</span>
+      <% end %>
+    </li>
+    <li class="user_info px-4">
+      <div class="flex">
+        <div class="flex justify-center items-center ml-1 mr-2">
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar.url, size: '20x20', class: 'rounded-full' %>
+          <% else %>
+            <%= image_tag("104.png",:size => "20x20") %>
+          <% end %>
+        </div>
+        <div class="flex items-center w-20">
+          <%= current_user.name %>
+        </div>
+      </div>
+      <div>
+        <div class="info-btns flex" data-controller="sideBar">
+          <span data-action="click->sideBar#infoBoxToggle">
+            <i class="fas fa-chevron-down"></i>
+          </span>
+          <span>
+            <i class="fas fa-question"></i>
+          </span>
+          <div class="w-40 h-24 py-2 absolute rounded bg-gray-lightest_s bottom-full right-12"
+               style="display: none;"
+               data-sideBar-target="infoBox">
+            <% if current_user %>
+              <div>
+                <%= link_to edit_registration_path(:user), class:'pl-4 py-1.5' do %>
+                  <i class="fas fa-cog"
+                     style="line-height: 14px; height: 14px; font-size: 14px;"> 設定</i>
+                <% end %>
+              </div>
+              <div>
+                <%= link_to user_private_note_private_path(current_user.id), class:'pl-3.5 py-1.5' do %>
+                  <i class="fas fa-user-alt w-24"
+                     style="line-height: 14px; height: 14px; font-size: 14px;"> 個人公開頁</i>
+                <% end %>
+              </div>
+              <div>
+                <%= link_to destroy_user_session_path, :method => :delete, class:'pl-4 py-1.5' do %>
+                  <i class="fas fa-sign-out-alt"
+                     style="line-height: 14px; height: 14px; font-size: 14px;"> 登出</i>
+                <% end %>
+              </div>
+            <% else %>
+              <div>
+                <%= link_to '註冊', new_registration_path(:user), class:'pl-4 py-1' %>
+              </div>
+              <div>
+                <%= link_to '登入', new_session_path(:user), class:'pl-4 py-1' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="handle -right-0 w-6 z-10" data-action= "mouseover->sideBar#toggle">
+    <div class="handle-btn left-2">
+    </div>
+  </div>
+</div>

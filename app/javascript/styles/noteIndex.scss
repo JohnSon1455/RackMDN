@@ -1,0 +1,89 @@
+.side-bar-btn{
+  @apply no-underline text-white hover:bg-gray-lightest flex items-center;
+  a {
+    @apply inline-block py-2 px-3 w-full
+  }
+}
+i {
+  @apply inline-block w-8 text-center text-xs
+}
+.green-btn {
+  @apply bg-green m-3 py-1.5 rounded
+}
+
+
+.note-index * {
+  ::placeholder {
+  color: #878787;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #878787;
+}
+
+::-ms-input-placeholder {
+  color: #878787;
+}
+}
+.side-nav-on,
+.side-nav-off {
+  background-color: #262626;
+  color: white;
+  opacity: 1;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.side-nav-on {
+  margin-left: -8rem;
+  opacity: 0;
+  transition-duration: 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+    div:last-child {
+    align-self: flex-end;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+}
+.side-nav-off {
+  z-index: 10;
+  transition-duration: 0.3s;
+}
+
+.side-nav-on:hover {
+  margin-left: 0;
+  // position: absolute;
+  opacity: 1;
+  transition: ease-in;
+  transition-duration: 0.3s;
+}
+.note-index {
+  @apply flex bg-gray-rackmd h-screen
+}
+.note-index-btn {
+  @apply inline-block border-solid border-white border rounded hover:bg-white hover:text-gray-rackmd py-1
+}
+
+.notes-gather {
+  @apply bg-white p-3 m-3 h-24 rounded flex flex-wrap
+}
+
+
+
+.notes-icon-list {
+  @apply mt-auto ml-auto;
+  a {
+    @apply inline-block text-gray-rackmd no-underline text-sm hover:text-black cursor-pointer w-5
+  }
+}
+
+.update-timer {
+  @apply text-gray-light text-xs w-full italic
+}

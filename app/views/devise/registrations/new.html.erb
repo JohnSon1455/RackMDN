@@ -1,0 +1,59 @@
+<div class="sign-full">
+  <nav class="sign-header">
+    <%= link_to notes_path do %>
+      <i class="fas fa-book-open sign-header-text"> RackMD</i>
+    <% end %>
+  </nav>
+  <section class="sign-screen">
+    <div class="w-96">
+      <h2 class="sign-title">註冊</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field my-2">
+          <%= f.label :使用者名稱, class:"sign-sectitle" %>
+          <div class="text-center">
+            <%= f.text_field :name, autofocus: true,
+                                    autocomplete: "name",
+                                    class: "sign-input",
+                                    placeholder: "您的使用者名稱" %>
+          </div>
+          <div class="sign-remind">
+            僅允許輸入中文、a-Z、0-9 以及 - 號 (非首位字元)
+          </div>
+        </div>
+        <div class="field my-2">
+          <%= f.label :email, class:"sign-sectitle" %>
+          <div class="text-center">
+            <%= f.email_field :email, autofocus: true,
+                                      autocomplete: "email",
+                                      class: "sign-input",
+                                      placeholder: "您的 Email" %>
+          </div>
+        </div>
+        <div class="field my-2">
+          <%= f.label :密碼, class:"sign-sectitle" %>
+          <div class="text-center">
+            <%= f.password_field :password, autocomplete: "new-password",
+                                            class: "sign-input",
+                                            placeholder: "您的密碼"%>
+          </div>
+          <div class="sign-remind">
+            密碼長度須大於五個字。
+          </div>
+        </div>
+        <div class="sign-text">
+          繼續登入，代表您同意<a href="#" class="sign-a-hover">服務條款</a>。
+        </div>
+        <div class="actions text-center my-3">
+          <%= f.submit "註冊", class:"sign-btn" %>
+        </div>
+        <div class="sign-text">
+          或是
+        </div><br />
+      <% end %>
+      <div class="sign-text">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </section>
+</div>

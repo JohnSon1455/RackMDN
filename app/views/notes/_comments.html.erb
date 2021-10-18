@@ -1,0 +1,56 @@
+<div>
+  <% comments.each do |comment| %>
+    <div class="relative">
+      <div id="comment_<%= comment.id %>"
+           data-controller="editComment commentToggle"
+           data-editComment-id-value="<%= comment.id %>"
+           class="px-3.5 border-b border-gray-300 mb-2">
+        <div class="flex">
+          <div class="flex justify-center items-start mr-1 mt-1">
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.url, size: '20x20', class: 'rounded-full' %>
+            <% else %>
+              <%= image_tag("104.png",:size => "20x20") %>
+            <% end %>
+          </div>
+          <div>
+            <div class="flex justify-between">
+              <div class="text-xl">
+                <%= comment.user.name %>
+              </div>
+              <button data-action="commentToggle#toggle">
+                <%= commentbtn_display(comment) %>
+              </button>
+            </div>
+            <div class="text-xs text-gray-400">
+              <%= comment.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+            </div>
+            <div data-editComment-target="text"
+                class="mb-2">
+              <%= comment.content %>
+            </div>
+          </div>
+        </div>
+        <div data-commentToggle-target="display"
+             data-editComment-target="hide"
+             style="display: none;"
+             class="absolute right-3 top-6 z-10">
+          <div class="commentinnerbg">
+            <a href="#"
+               data-action="editComment#edit"
+               class="commentbtnhover">
+              <i class="fas fa-pencil-alt inline-block w-4"></i>編輯
+            </a>
+            <%= link_to comment_path(comment),
+                        remote: true,
+                        method: 'delete',
+                        data: { id: comment.id }, 
+                        class:"commentbtnhover" do %>
+              <i class="fas fa-trash-alt inline-block w-4"></i>刪除
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+</div>

@@ -1,0 +1,104 @@
+<section class="bg-gray-rackmd text-white flex">
+  <div class="w-80 bg-gray-dark px-3 py-5 text-xl h-screen sticky top-0">
+    <div>
+      <i class="fas fa-book-open text-xl"></i><%= link_to "RackMD", notes_path,class:"text-left no-underline text-white" %></i>
+    </div>
+    <div class="flex justify-center items-center pt-4">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.url, size: '100x100', class: 'rounded-full' %>
+      <% else %>
+        <%= image_tag("104.png",:size => "100x100") %>
+      <% end %>
+    </div>
+    <div class="px-3 my-5">
+      <div class="text-center text-2xl my-4"><%= @user.name %></div>
+      <div class="my-4 text-center">
+        <%= link_to '修改個人資料', edit_registration_path(:user),class:"no-underline text-white text-lg py-2 px-8 rounded bg-blue-500 hover:bg-blue-700 "%>
+      </div>
+      <div class="text-xs py-3 ml-6 text-gray-400">
+        從 <%=@user.created_at.strftime("%Y年%m月%d日") %> 開始加入 RackMD 
+      </div>
+    </div>
+  </div>
+  <main class="profile w-full h-full p-5">
+    <div class="text-sm text-gray-400">
+      <%= link_to user_private_note_private_path(current_user) do%>
+        <i class="fas fa-lock w-36 text-lg hover:text-white"> 我擁有的筆記</i>
+      <% end %>
+      <%= link_to "公開筆記", user_public_note_path(current_user), class:"ml-2 hover:text-white text-lg" %>
+      <%= link_to "讚賞列表", user_like_note_liked_path(current_user), class:"ml-3 hover:text-white text-lg" %>
+    </div>
+    <div class="hr border-0 bg-gray-300 h-px mt-2 mb-8"> 
+    </div>
+    <div class="flex justify-between items-center mb-5">
+      <div class="border border-gray-200 rounded w-56 p-1">
+        <%= form_tag(user_like_note_liked_path, :method => "get", class:"my-0.5") do %>
+          <i class="fas fa-search text-gray-200 text-base"></i>
+          <%= text_field_tag :search, nil, placeholder: "搜尋筆記...", class:"bg-gray-rackmd focus:outline-none text-gray-200" %>
+          <%= submit_tag "搜尋" ,:note_name => nil, class: "hidden" %>
+        <% end %>
+      </div>
+      <button class="w-8 border border-gray-200 bg-gray-rackmd text-white relative"
+              data-controller="commentToggle" 
+              data-action="commentToggle#toggle">
+        <div>
+          <i class="fas fa-chevron-down h-5 w-full flex items-center justify-center text-gray-200 hover:bg-gray-200 hover:text-gray-700"></i>
+        </div>
+        <div class="absolute top-full right-0 mt-0.5 py-2 w-40 bg-gray-light rounded"
+              style="display: none;"
+              data-commentToggle-target="display">
+          <div class="text-gray-300 text-base text-left px-4">
+            筆記排序
+          </div>
+          <div class="text-sm">
+            <%= link_to "新到舊",
+                        user_like_note_liked_path(desc: 'desc'),
+                        class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+            <%= link_to "舊到新", 
+                        user_like_note_liked_path(desc: 'asc'),
+                        class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+          </div>
+        </div>
+      </button>
+    </div>
+    <% @notes.each do |note| %>
+      <div class="w-full bg-gray-dark my-0.5 px-8 py-5">
+        <h2 class= "text-gray-200 text-xl">
+          <%= link_to note.title, note_path(note) %>
+        </h2>
+        <p class= "text-gray-400 text-base">
+          <%= truncate note.content.remove(note.title,",","•","#"), length: 50 %>
+        </p>
+        <div class="flex text-gray-400 text-sm">
+          <div>
+            <%= note.user.name %> 變更 <%= day_difference(note) %>
+          </div>
+          <div class="ml-2">
+            <i class="fas fa-eye w-16">閱讀模式</i>
+          </div>
+          <div data-controller="favorite" 
+              data-favorite-id-value="<%= note.id %>">
+            <a href="#"
+              id = "favorite_btn"
+              data-action="favorite#addFavorite"
+              data-id="<%= note.id %>">
+              <%= favorite_icon(current_user, note) %>讚賞 
+            </a>
+            <span data-favorite-target='counter' >
+              <%= @likes %>
+            </span>
+          </div>
+          <div data-controller="collect" 
+              data-collect-id-value="<%= note.id %>">
+            <a data-action="collect#addCollection">
+              <%= collection_icon(current_user, note) %>收藏
+            </a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class=" flex justify-center mt-5 ml-auto">
+      <%= paginate @notes %>
+    </div>
+  </main>
+</section>

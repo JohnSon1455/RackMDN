@@ -1,0 +1,211 @@
+.md-editor-toolbar {
+  background: #1c1c1e !important;
+  border-bottom: 1px solid #343434 !important;
+  color: #ccc;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  font-size: 16px !important;
+  height: 42px !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding: 0px 0px !important;
+}
+.md-editor-toolbar > button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+#editor {
+  
+  ol {
+    list-style-type: decimal;
+  }
+}
+.CodeMirror-selected {
+  background: #34455a !important;
+}
+.CodeMirror-sizer {
+  height: calc(100vh - 90px) !important;
+}
+.md-editor {
+  color: #abb2bf !important;
+  text-align: left;
+  box-shadow: 0 0 0 1px rgb(16 22 26 / 10%), 0 0 0 rgb(16 22 26 / 0%),
+    0 1px 1px rgb(16 22 26 / 20%);
+  border-radius: 3px;
+  position: relative;
+  z-index: 0;
+  background-color: #333 !important;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-weight: bold;
+  
+}
+.CodeMirror {
+  color: #abb2bf !important;
+  font-family: "Source Code Pro", Consolas, monaco, monospace;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  font-size: 18px !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+  background: #333 !important;
+  height: 100% !important;
+}
+.CodeMirror-gutter {
+  background: #333 !important;
+}
+.CodeMirror-line {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: normal;
+}
+
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px !important;
+  color: #999;
+  text-align: right;
+  box-sizing: content-box;
+  white-space: nowrap;
+  margin: 0 0 !important;
+}
+
+.cm-header,
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  color: #eda35e !important;
+  font-weight: bold !important;
+  font-family: monospace;
+  font-size: 18px;
+}
+.cm-tag,
+.cm-bracket {
+  color: #e06c75 !important;
+}
+.cm-attribute {
+  color: #eda35e !important;
+}
+.cm-string {
+  color: #6699cc !important;
+}
+.cm-link {
+  color: #98c379 !important;
+  text-decoration: none;
+}
+.cm-comment {
+  color: #5c6370 !important;
+  font-style: italic;
+}
+.cm-variable-2 {
+  color: #bae67e !important;
+}
+
+.md-editor-toolbar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  padding: 3px 2px;
+  margin: 8px;
+  border-radius: 2px;
+  transition: all 0.3s;
+  svg {
+    vertical-align: middle;
+    height: 16px !important;
+    width: 16px !important;
+  }
+}
+
+// preview
+.md-editor-preview {
+  background-color: #f8f8f8;
+  padding: 30px 10px 10px 10px !important;
+  width: 0%;
+  overflow: hidden;
+  border-left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+}
+.md-editor-preview span {
+  color: #333;
+}
+.md-editor-preview ul {
+  color: #333;
+}
+.md-editor-preview li {
+  color: #333;
+}
+.md-editor-preview h1 {
+  color: #333;
+}
+.md-editor-preview h2 {
+  color: #333;
+}
+.md-editor-preview h3 {
+  color: #333;
+}
+.md-editor-preview h4 {
+  color: #333;
+}
+.md-editor-preview h5 {
+  color: #333;
+}
+.md-editor-preview h6 {
+  color: #333;
+}
+.wmde-markdown h6 {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  color: #777777 !important;
+  font-weight: 600;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.wmde-markdown-color code[class*="language-"] .token.keyword {
+  color: #0077aa !important;
+}
+.wmde-markdown-color code[class*="language-"] .token.function,
+.wmde-markdown-color code[class*="language-"] .token.builtin {
+  color: #dd4a68 !important;
+}
+.wmde-markdown-color .token.number {
+  color: #990055 !important;
+}
+.wmde-markdown-color .token.tag {
+  color: #63a35c !important;
+}
+.wmde-markdown-color code[class*="language-"] .token.attr-name {
+  color: #795da3 !important;
+}
+.wmde-markdown-color code[class*="language-"] .token.attr-value {
+  color: #df5000 !important;
+}
+.wmde-markdown p {
+  color: #333;
+  font-weight: 400;
+}
+.cm-invalidchar {
+  opacity: 0;
+}

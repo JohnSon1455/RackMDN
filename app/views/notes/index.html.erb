@@ -1,0 +1,96 @@
+<section class="note-index">
+  <%= render "side_bar" %>
+  <main class="text-white p-4 w-full"
+        data-controller="searchTag">
+    <div class="flex justify-between mt-10 mb-20 px-3">
+      <span href="#" class="note-index-btn px-7 cursor-pointer" 
+                     data-action="click->searchTag#toggle">標籤</span>
+      <div  data-searchTag-target="box" 
+            class="h-min w-80 z-10 shadow-xl absolute rounded mt-9 p-2 text-white "
+            style="display: none; background-color: #686868;">
+          <%= form_tag(notes_path, :method => "get") do %>
+            <%= text_field_tag :search, nil, placeholder: "搜尋標籤名稱", 
+              class: "text-white rounded border-white border-solid border p-1 align-middle	w-full", style:"background-color: transparent;" %>
+            <%= submit_tag "搜尋" ,:tag_name => nil, class: "hidden" %>
+          <% end %>
+        <br>
+        <div class="flex justify-between -mt-4">
+          <div>
+            <a href="#" class="text-white hidden">選擇所有標籤</a>
+              <%= link_to "Ｘ清除選取" , notes_path, class:"text-white ml-3" %>
+          </div>
+        </div>
+        <ul class="flex flex-wrap w-full list-none">
+          <% @tags.each do |tag| %>
+          <li class="inline-block w-1/2">
+            <input type="checkbox" class="mr-3"
+                   name="tag"
+                   value="<%= tag.id %>"
+                   data-action="change->searchTag#search">
+                   <%= tag.title %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <button class="w-32 px-2 border border-gray-200 bg-gray-rackmd text-white relative hover:bg-gray-200 hover:text-gray-700 rounded"
+              data-controller="commentToggle" 
+              data-action="commentToggle#toggle">
+        <div class="flex justify-between items-center">
+          <div>顯示方式</div>
+          <div>
+            <i class="fas fa-chevron-down w-full h-5 flex items-center justify-center"></i>
+          </div>
+        </div>
+        <div class="absolute top-full right-0 mt-0.5 py-2 w-40 bg-gray-light rounded"
+              style="display: none;"
+              data-commentToggle-target="display">
+          <div class="text-gray-300 text-base text-left px-4">
+            筆記排序
+          </div>
+          <div class="text-sm">
+            <%= link_to "新到舊",
+                        notes_path(desc: 'desc'),
+                        class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+            <%= link_to "舊到新", 
+                        notes_path(desc: 'asc'),
+                        class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+          </div>
+        </div>
+      </button>
+    </div>
+    <div>
+      <hr class="mb-10">
+      <div data-searchTag-target = "filter" 
+           class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
+           id='noteContainer'>
+        <% @notes.each do |note| %>
+          <div class="notes-gather">
+            <h2 class="-m-1 w-full">
+              <%= link_to note.title, note_path(note), class: "text-gray-rackmd no-underline" %>
+            </h2>
+            <span class="update-timer">
+              <i class="far fa-clock"></i>
+              <%= day_difference(note) %>
+            </span>
+            <div class="notes-icon-list">
+              <a data-controller="collect"
+                  data-collect-id-value="<%= note.id %>"
+                  data-action="collect#addCollection">
+                    <%= collection_icon(current_user, note) %>
+              </a>
+              <%= link_to note_path(note), method: "delete", data: {confirm: "確定刪除筆記？"} do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class=" flex justify-center mt-5 ml-auto">
+        <%= paginate @notes %>
+      </div>
+    </div>
+  </main>
+</section>
+
+<%= render "filterNote" %>
+

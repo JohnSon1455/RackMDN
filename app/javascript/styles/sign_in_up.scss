@@ -1,0 +1,36 @@
+.sign-full {
+  @apply bg-gray-rackmd h-screen
+}
+.sign-header {
+  @apply bg-gray-600 p-2 text-gray-300 sticky w-screen
+}
+.sign-header-text {
+  @apply text-xl inline-block w-36 hover:text-gray-400
+}
+.sign-screen {
+  @apply flex justify-center pt-5
+}
+.sign-title {
+  @apply text-gray-300 text-2xl font-bold text-center
+}
+.sign-sectitle {
+  @apply text-gray-300 text-base ml-8
+}
+.sign-input {
+  @apply w-80 h-9 p-2 rounded border border-gray-400 focus:outline-none focus:ring-1 focus:border-white bg-gray-rackmd text-white
+}
+.sign-btn {
+  @apply bg-signbtn hover:bg-green text-white py-2 px-16 cursor-pointer
+}
+.sign-remind {
+  @apply text-xs text-gray-400 ml-8
+}
+.sign-text {
+  @apply text-gray-300 text-base text-center
+}
+.sign-a-hover {
+  @apply border-b border-white hover:text-gray-400 hover:border-gray-400
+}
+.sign-github {
+  @apply bg-gray-700 hover:bg-gray-800 text-gray-300 py-2 pr-12 rounded
+}

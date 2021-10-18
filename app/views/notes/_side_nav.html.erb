@@ -1,0 +1,52 @@
+<nav class="flex bg-gray-dark w-12 z-10 h-screen sticky top-0">
+  <div class="side-nav-off">
+  </div>
+  <div class="side-nav-on w-60 z-20">
+    <div class="side-bar-btn flex justify-center text-lg py-1.5">
+      <%= link_to notes_path do %>
+        <i class="fas fa-user pr-2"></i>我的空間
+      <% end %>
+    </div>
+    <div class="flex">
+      <i class="fa-solid fa-magnifying-glass z-10"></i>
+      <%= form_tag(notes_path, :method => "get") do %>
+        <%= text_field_tag :search, nil, placeholder: "搜尋關鍵字或標籤", class: "m-3 bg-gray-lightest p-1 rounded w-full" %>
+        <%= submit_tag "搜尋筆記" ,:note_name => nil, class: "hidden" %>
+      <% end %>
+    </div >
+    <div class="green-btn">
+      <%=link_to notes_path, method: 'post' do %>
+        <i class="fas fa-plus"></i>建立筆記
+      <% end %>
+    </div>
+    <div class="side-bar-btn">
+      <%= link_to notes_path do %>
+        <i class="fas fa-lock"></i>我的筆記
+      <% end %>
+    </div>
+    <div class="side-bar-btn">
+      <%= link_to notes_path do %>
+        <i class="fas fa-users"></i>協作筆記
+      <% end %>
+    </div>
+    <div class="side-bar-btn">
+      <%= link_to users_collections_path do %>
+        <i class="fas fa-bookmark"></i>收藏
+      <% end %>
+    </div>
+    <div class="inline-block mt-auto">
+      <div class="text-sm mx-3 my-3 py-1 mt-auto">
+        <%= link_to "個人公開頁", user_private_note_private_path(current_user)%>
+      </div>
+      <div class="block text-sm mx-3 mt-3 py-1">
+        <% if current_user %>
+          <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+          <%= link_to('個人帳戶設定', edit_registration_path(:user)) %>
+        <% else %>
+          <%= link_to('註冊', new_registration_path(:user)) %> |
+          <%= link_to('登入', new_session_path(:user)) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

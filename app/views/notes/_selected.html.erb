@@ -1,0 +1,26 @@
+<div class="grid grid-cols-2">
+  <% notes.each do |note| %>
+      <div class="notes-gather">
+          <h2 class="-m-1 w-full">
+            <%= link_to note.title, note_path(note), class: "text-gray-rackmd no-underline" %>
+          </h2>
+          <span class="update-timer">
+            <i class="far fa-clock"></i>
+            變更於 <%= day_difference(note) %>天前
+          </span>
+          <div class="notes-icon-list">
+            <a data-controller="collect"
+                data-collect-id-value="<%= note.id %>"
+                data-action="collect#addCollection">
+                  <%= collection_icon(current_user, note) %>
+            </a>
+            <%= link_to note_path(note), method: "delete", data: {confirm: "確定刪除筆記？"} do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </div>
+      </div>
+  <% end %>
+</div>
+<div class=" flex justify-center mt-5 ml-auto">
+  <%= paginate notes %>
+</div>

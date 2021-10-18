@@ -1,0 +1,17 @@
+<div data-controller="commentToggle">
+  <%= form_with(model: comment, url: note_comments_path(note), local: false) do |f| %>
+    <div class="text-center">
+      <%= f.text_area :content, 
+          placeholder:"輸入您的留言...", 
+          data: {action: "click->commentToggle#toggle"}, 
+          class:"border-solid border border-gray-300 rounded text-sm h-16 w-44" %>
+    </div>
+    <div data-commentToggle-target="display"; style="display: none"; class="mt-2">
+      <%= f.submit "送出",class:"commentbtn bg-blue-500 hover:bg-blue-600 text-white ml-3 mb-3" %>
+      <button class="commentbtn ml-2 text-gray-400 hover:text-white hover:bg-gray-500"
+              data-action="commentToggle#hide">
+        取消
+      </button>
+    </div>
+  <% end %>
+</div>

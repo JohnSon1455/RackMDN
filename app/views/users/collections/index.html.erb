@@ -1,0 +1,75 @@
+<section class="w-screen flex bg-gray-rackmd relative">
+  <%= render "notes/side_bar" %>
+  <main class="w-full h-full ">
+    <div class="p-8">
+      <div class="flex justify-between items-center mb-5">
+        <div class="border border-gray-200 rounded w-56 p-1">
+          <%= form_tag(users_collections_path, :method => "get") do %>
+            <i class="fas fa-search text-gray-200"></i>
+            <%= text_field_tag :search, nil, placeholder: "在書籤列表中搜尋", class:"bg-gray-rackmd focus:outline-none text-gray-200" %>
+            <%= submit_tag "搜尋" ,:note_name => nil, class: "hidden" %>
+          <% end %>
+        </div>
+        <button class="w-8 border border-gray-200 bg-gray-rackmd text-white relative"
+                data-controller="commentToggle" 
+                data-action="commentToggle#toggle">
+          <div>
+            <i class="fas fa-chevron-down h-5 w-full flex items-center justify-center text-gray-200 hover:bg-gray-200 hover:text-gray-700"></i>
+          </div>
+          <div class="absolute top-full right-0 mt-0.5 py-2 w-40 bg-gray-light rounded"
+               style="display: none;"
+               data-commentToggle-target="display">
+            <div class="text-gray-300 text-sm text-left px-4">
+              筆記排序
+            </div>
+            <div>
+              <%= link_to  "最近收藏",
+                           users_collections_path(desc: 'desc'),
+                           class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+              <%= link_to  "最舊收藏", users_collections_path(desc: 'asc'),class:"block text-left py-0.5 px-4 text-gray-200 hover:bg-gray-400" %>
+            </div>
+          </div>
+        </button>
+      </div>
+      <% @collections.each do |note| %>
+        <div class="w-full bg-gray-dark my-0.5 px-8 py-5">
+          <h2 class= "text-gray-200 text-lg">
+            <%= link_to note.title, note_path(note) %>
+          </h2>
+          <p class= "text-gray-400 text-base">
+            <%= truncate note.content.remove(note.title,",","•","#"), length: 50 %>
+          </p>
+          <div class="flex text-gray-400 text-sm">
+            <div>
+              <%= note.user.name %> 變更 <%= day_difference(note) %>
+            </div>
+            <div class="ml-2">
+              <i class="fas fa-eye w-16">閱讀模式</i>
+            </div>
+            <div data-controller="favorite" 
+                data-favorite-id-value="<%= note.id %>">
+              <a href="#"
+                id = "favorite_btn"
+                data-action="favorite#addFavorite"
+                data-id="<%= note.id %>">
+                <%= favorite_icon(current_user, note) %>讚賞 
+              </a>
+              <span data-favorite-target='counter' >
+                <%= @likes %>
+              </span>
+            </div>
+            <div data-controller="collect" 
+                data-collect-id-value="<%= note.id %>">
+              <a data-action="collect#addCollection">
+                <%= collection_icon(current_user, note) %>已收藏
+              </a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class=" flex justify-center mt-5 ml-auto">
+        <%= paginate @collections %>
+      </div>
+    </div>
+  </main>
+</section>

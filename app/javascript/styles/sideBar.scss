@@ -1,0 +1,201 @@
+.sidebar {
+  box-sizing: border-box;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 50px;
+  background-color: #262626;
+  z-index: 99;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.sidebar.open {
+  width: 300px;
+}
+
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.nav-list {
+  margin-top: 20px;
+  height: 100%;
+  position: relative;
+}
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar .nave-list .my_space {
+  height: 60px;
+  font-size: large;
+  margin-top: -15px;
+}
+
+.sidebar input {
+  font-size: 15px;
+  padding-left: 10px;
+  color: #fff;
+  font-weight: 400;
+  outline: none;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #343434;
+  transition: all 0.5s ease-in-out;
+}
+.sidebar.open input {
+  opacity: 1;
+}
+.input-bar {
+  display: flex;
+}
+.input-bar .fa-solid {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sidebar li a:hover {
+  background: rgba(68, 68, 68);
+}
+.sidebar li a .links_name,
+.input-bar input {
+  color: #fff;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.sidebar.open li a .links_name,
+.input-bar input {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+  color: white;
+}
+.sidebar li i {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0;
+}
+.sidebar .create {
+  a {
+    background-color: #5cb85c;
+    transition: 0.5s;
+  }
+  i {
+    background-color: transparent;
+  }
+}
+.sidebar.open .create {
+  margin: 0 10px 10px 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.5s;
+  i {
+    min-width: 40px;
+    transition: 0.5s;
+  }
+}
+.sidebar.open .create a:hover {
+  background-color: #306430;
+}
+.sidebar li img {
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.handle {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+}
+@media (max-width: 420px) {
+  .sidebar {
+    display: none;
+  }
+}
+.handle-btn {
+  width: 34px;
+  height: 34px;
+  background-color: #262626;
+  // border: 2px solid #333;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+}
+.handle-btn:hover {
+  border: #fff 2px solid;
+}
+img[alt="side-bar-toggle"] {
+  width: 80px;
+  position: absolute;
+  top: -10px;
+  left: -23px;
+}
+.rotated {
+  transform: rotate(180deg);
+  transition: 0.4s;
+}
+.nave-list.list2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.user_info {
+  display: flex;
+  justify-content: space-between;
+  outline: red;
+  color: whitesmoke;
+}
+.user_info div:first-child {
+  outline: mediumaquamarine;
+  align-items: center;
+}
+
+.user_info div:last-child {
+  outline: mediumaquamarine;
+  align-items: center;
+  span {
+    border-radius: 50%;
+    width: fit-content;
+  }
+  i:hover {
+    background-color: rgba(68, 68, 68);
+    border-radius: 100px;
+  }
+}
+.info-btns {
+  position: relative;
+  :first-child {
+    cursor: pointer;
+  }
+}
+.info-box {
+  display: none;
+  background-color: #686868;
+}

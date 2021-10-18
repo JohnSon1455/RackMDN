@@ -1,0 +1,6 @@
+document.querySelector("#comments")
+        .insertAdjacentHTML("beforeend", "<%= j render "./notes/comment.html.erb", comment: @comment %>")
+
+var input = document.getElementById("comment_content")
+input.value = ""
+input.focus()
