@@ -28,6 +28,9 @@
                    value="<%= tag.id %>"
                    data-action="change->searchTag#search">
                    <%= tag.title %>
+                   <%= link_to tag_path(tag), method: "delete", data: { id: tag.id } do %>
+                    <i class="fas fa-trash-alt"></i>
+                   <% end %>
           </li>
           <% end %>
         </ul>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :is_public
     end
     resources :comments, shallow: true, only: [:create, :destroy]
+    resources :tags, shallow: true, only: [:create, :destroy]
   end
   
   namespace :api do

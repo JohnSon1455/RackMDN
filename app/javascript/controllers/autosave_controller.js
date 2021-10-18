@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["editor"]
   static values = { id: Number }
   initialize() {
-    this.updateValue = debounce(this.updateValue, 500).bind(this)
+    this.updateValue = debounce(this.updateValue, 1000).bind(this)
   }
 
   updateValue() {
